@@ -1,0 +1,104 @@
+@charset "utf-8";
+
+/**
+ * ffBadge用スタイルシート
+ */
+
+#ffbadge {
+	display: block;
+	border: 1px solid #4376C7;
+	width: 300px;
+	margin: 0;
+	padding: 0;
+}
+
+#ffbadge a img {
+	border-style: none;
+}
+
+#ffbadge #ffbadge_header {
+	display: block;
+	padding-top: 5px;
+	padding-left: 5px;
+	background-image: url(top_bottom_bg1.gif);
+	background-repeat: repeat-x;
+	background-position: top left;
+	position: relative; /* for #ffbadge_logo */
+}
+
+#ffbadge #ffbadge_logo {
+	display: inline;
+	position: absolute;
+	top: 7px;
+	right: 2px;
+	color: white;
+	font-weight: bold;
+	font-family: fantasy;
+	content: "ffbadge";
+}
+
+#ffbadge #ffbadge_body {
+	padding-top: 1em;
+}
+
+#ffbadge #ffbadge_footer {
+	display: block;
+	font-weight: bold;
+	margin-top: 1em;
+	text-align: right;
+	background-image: url(top_bottom_bg1.gif);
+	background-repeat: repeat-x;
+	background-position: bottom left;
+}
+
+#ffbadge #ffbadge_userinfo {
+	display: block;
+	text-decoration: none;
+}
+
+#ffbadge #ffbadge_userinfo img {
+	display: inline;
+	border:1px solid silver;
+}
+
+#ffbadge #ffbadge_userinfo_icon {
+	display: inline;
+	vertical-align: top;
+}
+
+#ffbadge #ffbadge_userinfo_nickname {
+	display: inline;
+	font-size: 120%;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+
+#ffbadge #ffbadge_services {
+	display: block;
+	margin: 0;
+	padding: 0;
+	padding-left: 20px;
+}
+
+#ffbadge #ffbadge_services li {
+	display: list-item;
+	list-style-type: none;
+}
+
+#ffbadge #ffbadge_services li a {
+	display: inline;
+	text-decoration: none;
+}
+
+#ffbadge #ffbadge_services li a img {
+	vertical-align: middle;
+}
+
+#ffbadge #ffbadge_services li a:hover,
+#ffbadge #ffbadge_services li a:focus {
+	display: inline;
+	text-decoration: underline;
+}
+
+// vim: ts=4:sw=4
