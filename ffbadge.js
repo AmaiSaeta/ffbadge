@@ -207,7 +207,7 @@ function ffBadge_callback_getServices(datas)
 		// HTMLタイトル取得JSONPパス
 		var PAGE_TITLE_GET_API_URI =
 			'http://www.usamimi.info/~ryouchi/title/get_title_jsonp.php'
-			+ '?url=' + url
+			+ '?url=' + escape(url)
 			+ '&callback=ffBadge_callback_getServiceTitle';
 
 		// タイトル取得JSONP呼び出し
