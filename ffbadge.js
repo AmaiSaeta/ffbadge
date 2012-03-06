@@ -45,9 +45,15 @@ var ffBadge_PICTURE_API_URI =
 var ffBadge_serviceAElems = {};
 
 // ローディング画像
-var ffBadge_loadElem = document.createElement('img');
-ffBadge_loadElem.src = ffBadge_HOME_URI + 'ajax-loader.gif';
-ffBadge_loadElem.alt = '[loading...]';
+var ffBadge_loadElem = (function() {
+	var cont = document.createElement('span');
+
+	var loadImg = cont.appendChild(document.createElement('img'));
+	loadImg.src = ffBadge_HOME_URI + 'ajax-loader.gif';
+	loadImg.alt = '[loading...]';
+
+	return cont;
+})();
 
 // バッジヘッダ部分
 var ffBadge_headerElem;
@@ -163,7 +169,8 @@ function ffBadge_callback_getServices(datas)
 			serviceAElem.appendChild(serviceImgElem);
 	
 			// ローディング表示挿入
-			var loadElem = ffBadge_loadElem.cloneNode(false);
+			var loadElem = ffBadge_loadElem.cloneNode(true);
+			loadElem.appendChild(document.createTextNode(services[i].name));
 			serviceAElem.appendChild(loadElem);
 			ffBadge_serviceAElems[serviceUrl] = {};
 			ffBadge_serviceAElems[serviceUrl]['loadElem'] = loadElem;
@@ -225,8 +232,10 @@ function ffBadge_callback_getServiceTitle(datas) {
 	ffBadge_serviceAElems[url]['aElem'].removeChild(
 		ffBadge_serviceAElems[url]['loadElem']);
 	// タイトル挿入
+	var title = (datas.title && datas.title.length) ? datas.title : url.match('^http://([^/]+)')[1];
+
 	ffBadge_serviceAElems[url]['aElem'].appendChild(
-		document.createTextNode(datas.title));
+		document.createTextNode(title));
 }
 
 // vim: ts=4:sw=4:ai
