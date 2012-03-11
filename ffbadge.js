@@ -234,8 +234,17 @@ function ffBadge_callback_getServiceTitle(datas) {
 	// タイトル挿入
 	var title = (datas.title && datas.title.length) ? datas.title : url.match('^http://([^/]+)')[1];
 
-	ffBadge_serviceAElems[url]['aElem'].appendChild(
-		document.createTextNode(title));
+	ffBadge_serviceAElems[url]['aElem'].innerHTML
+		+= ffBadge_convert2CharactorReference(title);
+}
+
+// 文字列内の特定文字を文字参照に変換
+function ffBadge_convert2CharactorReference(str)
+{
+	return str.toString()
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;');
 }
 
 // vim: ts=4:sw=4:ai
