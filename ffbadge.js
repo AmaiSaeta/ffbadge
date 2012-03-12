@@ -6,7 +6,7 @@
  * 利用の際には、ffBadge_ACCOUNT_NAME の値をFriendFeed登録アカウント名に
  * 書き換える事
  *
- * Copyright (c) 2009 AmaiSaeta
+ * Copyright (c) 2009,2011 AmaiSaeta
  * License: MIT License {{{
  * 	Permission is hereby granted, free of charge, to any person obtaining a copy
  * 	of this software and associated documentation files (the "Software"), to deal
