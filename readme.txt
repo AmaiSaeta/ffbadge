@@ -1,4 +1,4 @@
-【これって何?】
+﻿【これって何?】
 FriendFeed<http://friendfeed.com/>に登録しているサービスを一覧表示する。ついでに登録ニックネームとアイコンも。
 FriendFeed公式で類似のモノが提供されているが、サービスのタイトルを表示出来る点が異なる。
 JavaScript製なのでJSの設置が許可されていないblogサービスでは使用できない。あしからず。
@@ -20,35 +20,24 @@ ffbadge.js内の、
 本当はSkypeとかメールアドレスとかも出せればいいんだけど、FriendFeedにはそういう項目は無いし。……え?iddy?あれはTwitter登録できないから論外^^
 
 【ライセンス】
-MITライセンス(X11ライセンス)で。
-----
-The MIT License
-
-Copyright (c) 2009 AmaiSaeta
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-----
-……まぁ、日本語訳についてはOSIの日本語訳を参照。あくまで『参考訳』なのでそのつもりで。
+license.txtを参照
 
 【更新履歴】
+1.10.20120312
+    * 各サービスのタイトルが取得出来なかった場合、URLのドメイン部分を出力するよう修正
+    * 各サービスのタイトル中に文字参照が在った場合、本来の文字として出力するよう修正
+    * 各サービスのタイトル中に比較演算子("<",">")に囲まれた文字列が含まれていた場合、
+      それをHTMLのタグとして評価しないよう修正
+    * その他コード整形等
 1.00.20090324
-    初版公開
+    * 初版公開
+
+【既知の問題】
+    * 各サービスのタイトル取得失敗時、HTTPエラーコード及びその説明文がタイトルとして表示される
+      内部で使用しているタイトル取得API for JSONPの仕様だが、どうにか対処したい。
+    * XML(XHTML)文章で何も出力されない場合が在る
+      document.write()が利用出来ない為。仕様変更(利用方法の変更)が必要になると思われるので、
+      次のメジャーバージョンアップ時に対処する予定。
 
 【TODO】
     * 各サービスのタイトルにマウスオーバー/選択した際に最新の更新内容を数件表示するようにしたい。
