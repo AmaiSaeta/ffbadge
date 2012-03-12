@@ -7,30 +7,36 @@
  * 書き換える事
  *
  * Copyright (c) 2009 AmaiSaeta
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * License: MIT License {{{
+ * 	Permission is hereby granted, free of charge, to any person obtaining a copy
+ * 	of this software and associated documentation files (the "Software"), to deal
+ * 	in the Software without restriction, including without limitation the rights
+ * 	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * 	copies of the Software, and to permit persons to whom the Software is
+ * 	furnished to do so, subject to the following conditions:
+ *
+ * 	The above copyright notice and this permission notice shall be included in
+ * 	all copies or substantial portions of the Software.
+ *
+ * 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * 	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * 	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * 	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * 	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * 	THE SOFTWARE.
+ * }}}
  */
 
 // FriendFeedアカウント名; 利用者に合わせて変更の事
 var ffBadge_ACCOUNT_NAME = 'amaisaeta';
 // ffbadge保存先URL; アップロード先のURIに合わせて変更の事
 var ffBadge_HOME_URI = './';
+
+// ffbadge version number (omitted date number)
+var ffBadge_version = 1.1;
+// ffbadge copyright years string.
+var ffBadge_copyright_years = "2009,2011";
 
 // FriendFeed URI
 var ffBadge_FF_URI = 'http://friendfeed.com';
@@ -45,9 +51,15 @@ var ffBadge_PICTURE_API_URI =
 var ffBadge_serviceAElems = {};
 
 // ローディング画像
-var ffBadge_loadElem = document.createElement('img');
-ffBadge_loadElem.src = ffBadge_HOME_URI + 'ajax-loader.gif';
-ffBadge_loadElem.alt = '[loading...]';
+var ffBadge_loadElem = (function() {
+	var cont = document.createElement('span');
+
+	var loadImg = cont.appendChild(document.createElement('img'));
+	loadImg.src = ffBadge_HOME_URI + 'ajax-loader.gif';
+	loadImg.alt = '[loading...]';
+
+	return cont;
+})();
 
 // バッジヘッダ部分
 var ffBadge_headerElem;
@@ -86,9 +98,9 @@ function ffBadge_create()
 
 		// ffbadge設置先div; script要素直後に設置したいのでwriteで
 		document.write('<div id="ffbadge"></div>');
-	
+
 		var elem = document.getElementById('ffbadge');
-	
+
 		// header,body,footer部を生成
 		ffBadge_headerElem = document.createElement('div');
 		ffBadge_headerElem.id = 'ffbadge_header';
@@ -135,7 +147,7 @@ function ffBadge_callback_getServices(datas)
 		// ffbadgeロゴ
 		var logo = document.createElement('div');
 		logo.id = 'ffbadge_logo';
-		logo.appendChild(document.createTextNode('ffbadge 1.0'));
+		logo.appendChild(document.createTextNode('ffbadge ' + ffBadge_version));
 		ffBadge_headerElem.appendChild(logo);
 	}
 
@@ -150,20 +162,21 @@ function ffBadge_callback_getServices(datas)
 			var serviceLiElem = document.createElement('li');
 			var serviceUrl = decodeURI(services[i].profileUrl);
 
- 			// [MEMO]上手くURIデコードされない対策 for flickr
+			// [MEMO]上手くURIデコードされない対策 for flickr
 			serviceUrl = serviceUrl.replace("%40","@");
-	
+
 			var serviceAElem = document.createElement('a');
-			serviceAElem.href = serviceUrl;		
-	
+			serviceAElem.href = serviceUrl;
+
 			var serviceImgElem = document.createElement('img');
 			serviceImgElem.src = services[i].iconUrl;
 			serviceImgElem.alt = "[" + services[i].name + "]";
-	
+
 			serviceAElem.appendChild(serviceImgElem);
-	
+
 			// ローディング表示挿入
-			var loadElem = ffBadge_loadElem.cloneNode(false);
+			var loadElem = ffBadge_loadElem.cloneNode(true);
+			loadElem.appendChild(document.createTextNode(services[i].name));
 			serviceAElem.appendChild(loadElem);
 			ffBadge_serviceAElems[serviceUrl] = {};
 			ffBadge_serviceAElems[serviceUrl]['loadElem'] = loadElem;
@@ -171,7 +184,7 @@ function ffBadge_callback_getServices(datas)
 			// 入手できない為HTMLElementのみ保存しておく。
 			ffBadge_serviceAElems[serviceUrl]['aElem'] = serviceAElem;
 			callGetPageTitleApi(serviceUrl);
-	
+
 			serviceLiElem.appendChild(serviceAElem);
 			servicesListElem.appendChild(serviceLiElem);
 		}
@@ -189,7 +202,7 @@ function ffBadge_callback_getServices(datas)
 
 		// copyright
 		parentElem.id = 'ffbadge_copyright';
-		textElem.nodeValue = '(C) 2009 ';
+		textElem.nodeValue = '(C) ' + ffBadge_copyright_years + ' ';
 		aElem.href = 'http://amaisaeta.seesaa.net/';
 		aElem.innerHTML = 'AmaiSaeta';
 		ffBadge_footerElem.appendChild(parentElem.cloneNode(true));
@@ -200,14 +213,14 @@ function ffBadge_callback_getServices(datas)
 		aElem.href = ffBadge_FF_URI;
 		aElem.innerHTML = 'FriendFeed';
 		ffBadge_footerElem.appendChild(parentElem.cloneNode(true));
-	}	
+	}
 
 	// 指定されたURLのページのタイトルを取得
 	function callGetPageTitleApi(url) {
 		// HTMLタイトル取得JSONPパス
 		var PAGE_TITLE_GET_API_URI =
 			'http://www.usamimi.info/~ryouchi/title/get_title_jsonp.php'
-			+ '?url=' + url
+			+ '?url=' + escape(url)
 			+ '&callback=ffBadge_callback_getServiceTitle';
 
 		// タイトル取得JSONP呼び出し
@@ -225,8 +238,19 @@ function ffBadge_callback_getServiceTitle(datas) {
 	ffBadge_serviceAElems[url]['aElem'].removeChild(
 		ffBadge_serviceAElems[url]['loadElem']);
 	// タイトル挿入
-	ffBadge_serviceAElems[url]['aElem'].appendChild(
-		document.createTextNode(datas.title));
+	var title = (datas.title && datas.title.length) ? datas.title : url.match('^http://([^/]+)')[1];
+
+	ffBadge_serviceAElems[url]['aElem'].innerHTML
+		+= ffBadge_convert2CharactorReference(title);
+}
+
+// 文字列内の特定文字を文字参照に変換
+function ffBadge_convert2CharactorReference(str)
+{
+	return str.toString()
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;');
 }
 
 // vim: ts=4:sw=4:ai
