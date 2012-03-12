@@ -32,6 +32,11 @@ var ffBadge_ACCOUNT_NAME = 'amaisaeta';
 // ffbadge保存先URL; アップロード先のURIに合わせて変更の事
 var ffBadge_HOME_URI = './';
 
+// ffbadge version number (omitted date number)
+var ffBadge_version = 1.1;
+// ffbadge copyright years string.
+var ffBadge_copyright_years = "2009,2011";
+
 // FriendFeed URI
 var ffBadge_FF_URI = 'http://friendfeed.com';
 // FriendFeed APIパス; Get services and subscriptions
@@ -141,7 +146,7 @@ function ffBadge_callback_getServices(datas)
 		// ffbadgeロゴ
 		var logo = document.createElement('div');
 		logo.id = 'ffbadge_logo';
-		logo.appendChild(document.createTextNode('ffbadge 1.0'));
+		logo.appendChild(document.createTextNode('ffbadge ' + ffBadge_version));
 		ffBadge_headerElem.appendChild(logo);
 	}
 
@@ -196,7 +201,7 @@ function ffBadge_callback_getServices(datas)
 
 		// copyright
 		parentElem.id = 'ffbadge_copyright';
-		textElem.nodeValue = '(C) 2009 ';
+		textElem.nodeValue = '(C) ' + ffBadge_copyright_years + ' ';
 		aElem.href = 'http://amaisaeta.seesaa.net/';
 		aElem.innerHTML = 'AmaiSaeta';
 		ffBadge_footerElem.appendChild(parentElem.cloneNode(true));
