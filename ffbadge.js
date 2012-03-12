@@ -31,7 +31,7 @@
 // FriendFeedアカウント名; 利用者に合わせて変更の事
 var ffBadge_ACCOUNT_NAME = 'amaisaeta';
 // ffbadge保存先URL; アップロード先のURIに合わせて変更の事
-var ffBadge_HOME_URI = './';
+var ffBadge_HOME_URI = 'http://amaisaeta.up.seesaa.net/ffbadge/';
 
 // ffbadge version number (omitted date number)
 var ffBadge_version = 1.1;
