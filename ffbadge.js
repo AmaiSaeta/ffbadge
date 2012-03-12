@@ -7,24 +7,25 @@
  * 書き換える事
  *
  * Copyright (c) 2009 AmaiSaeta
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * License: MIT License {{{
+ * 	Permission is hereby granted, free of charge, to any person obtaining a copy
+ * 	of this software and associated documentation files (the "Software"), to deal
+ * 	in the Software without restriction, including without limitation the rights
+ * 	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * 	copies of the Software, and to permit persons to whom the Software is
+ * 	furnished to do so, subject to the following conditions:
+ *
+ * 	The above copyright notice and this permission notice shall be included in
+ * 	all copies or substantial portions of the Software.
+ *
+ * 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * 	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * 	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * 	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * 	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * 	THE SOFTWARE.
+ * }}}
  */
 
 // FriendFeedアカウント名; 利用者に合わせて変更の事
@@ -92,9 +93,9 @@ function ffBadge_create()
 
 		// ffbadge設置先div; script要素直後に設置したいのでwriteで
 		document.write('<div id="ffbadge"></div>');
-	
+
 		var elem = document.getElementById('ffbadge');
-	
+
 		// header,body,footer部を生成
 		ffBadge_headerElem = document.createElement('div');
 		ffBadge_headerElem.id = 'ffbadge_header';
@@ -156,18 +157,18 @@ function ffBadge_callback_getServices(datas)
 			var serviceLiElem = document.createElement('li');
 			var serviceUrl = decodeURI(services[i].profileUrl);
 
- 			// [MEMO]上手くURIデコードされない対策 for flickr
+			// [MEMO]上手くURIデコードされない対策 for flickr
 			serviceUrl = serviceUrl.replace("%40","@");
-	
+
 			var serviceAElem = document.createElement('a');
-			serviceAElem.href = serviceUrl;		
-	
+			serviceAElem.href = serviceUrl;
+
 			var serviceImgElem = document.createElement('img');
 			serviceImgElem.src = services[i].iconUrl;
 			serviceImgElem.alt = "[" + services[i].name + "]";
-	
+
 			serviceAElem.appendChild(serviceImgElem);
-	
+
 			// ローディング表示挿入
 			var loadElem = ffBadge_loadElem.cloneNode(true);
 			loadElem.appendChild(document.createTextNode(services[i].name));
@@ -178,7 +179,7 @@ function ffBadge_callback_getServices(datas)
 			// 入手できない為HTMLElementのみ保存しておく。
 			ffBadge_serviceAElems[serviceUrl]['aElem'] = serviceAElem;
 			callGetPageTitleApi(serviceUrl);
-	
+
 			serviceLiElem.appendChild(serviceAElem);
 			servicesListElem.appendChild(serviceLiElem);
 		}
@@ -207,7 +208,7 @@ function ffBadge_callback_getServices(datas)
 		aElem.href = ffBadge_FF_URI;
 		aElem.innerHTML = 'FriendFeed';
 		ffBadge_footerElem.appendChild(parentElem.cloneNode(true));
-	}	
+	}
 
 	// 指定されたURLのページのタイトルを取得
 	function callGetPageTitleApi(url) {
