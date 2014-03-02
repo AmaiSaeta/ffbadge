@@ -238,7 +238,7 @@ function ffBadge_callback_getServiceTitle(datas) {
 	ffBadge_serviceAElems[url]['aElem'].removeChild(
 		ffBadge_serviceAElems[url]['loadElem']);
 	// タイトル挿入
-	var title = (datas.title && datas.title.length) ? datas.title : url.match('^http://([^/]+)')[1];
+	var title = (datas.title && datas.title.length) ? datas.title : url.match('^https?://([^/]+)')[1];
 
 	ffBadge_serviceAElems[url]['aElem'].innerHTML
 		+= ffBadge_convert2CharactorReference(title);
