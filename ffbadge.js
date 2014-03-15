@@ -6,7 +6,7 @@
  * 利用の際には、ffBadge_ACCOUNT_NAME の値をFriendFeed登録アカウント名に
  * 書き換える事
  *
- * Copyright (c) 2009,2011 AmaiSaeta
+ * Copyright (c) 2009,2014 AmaiSaeta
  * License: MIT License {{{
  * 	Permission is hereby granted, free of charge, to any person obtaining a copy
  * 	of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,7 @@ var ffBadge_HOME_URI = './';
 // ffbadge version number (omitted date number)
 var ffBadge_version = 1.1;
 // ffbadge copyright years string.
-var ffBadge_copyright_years = "2009,2011";
+var ffBadge_copyright_years = "2009,2014";
 
 // FriendFeed URI
 var ffBadge_FF_URI = 'http://friendfeed.com';
