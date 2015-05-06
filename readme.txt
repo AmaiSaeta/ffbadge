@@ -1,4 +1,11 @@
-﻿【これって何?】
+FriendFeedがサービス終了した為、開発を終了しました。
+
+http://blog.friendfeed.com/2015/04/friendfeed-was-shut-down-on-april-9-2015.html
+http://amaisaeta.seesaa.net/article/418527202.html
+
+-------------------------------------------------------------------------------------
+
+【これって何?】
 FriendFeed<http://friendfeed.com/>に登録しているサービスを一覧表示する。ついでに登録ニックネームとアイコンも。
 FriendFeed公式で類似のモノが提供されているが、サービスのタイトルを表示出来る点が異なる。
 JavaScript製なのでJSの設置が許可されていないblogサービスでは使用できない。あしからず。
